@@ -1,13 +1,11 @@
 'use strict'
-path = require('path')
-fs = require('fs')
-spawn = require('cross-spawn')
-glob = require('glob')
+spawn = require 'cross-spawn'
+glob = require 'glob'
+fs = require 'fs'
 
   
 spawnSync = (command, args, cb) ->
-  result = spawn(command, args, stdio: 'inherit')
-
+  result = spawn command, args, stdio:'inherit'
   poll = ->
     if result._closesGot == 1
       cb?()
@@ -19,16 +17,27 @@ spawnSync = (command, args, cb) ->
   return
 
 write = (yeoman, options, cb) ->
-  if !self.filters.jade
-    self.filters.jade = false
   files = glob '**',
     dot: true
-    cwd: self.sourceRoot()
+    cwd: yeoman.sourceRoot()
   , (err, files) ->
     for f in files
-      yeoman.fs.copyTpl self.templatePath(f), self.destinationPath(f), options
+      if fs.lstatSync(yeoman.templatePath(f)).isDirectory()
+        fs.mkdirSync yeoman.destinationPath(f)
+      yeoman.fs.copyTpl yeoman.templatePath(f), yeoman.destinationPath(f), options
     cb?()
+    
+launchGrunt = (yeoman) ->
+  yeoman.log ''
+  yeoman.log 'Your app has been built'
+  yeoman.log 'CD into ' + yeoman.filters.appName + '/'
+  yeoman.log 'and type'
+  yeoman.log '    grunt'
+  yeoman.log 'to run'
+  yeoman.log ''
+  yeoman.spawnCommand 'grunt', null, null
 
 module.exports =
   spawnSync: spawnSync
   write: write
+  launchGrunt: launchGrunt

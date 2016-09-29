@@ -14,7 +14,7 @@ module.exports = (grunt) ->
         tasks: ['stylus']
       livereload:
         options:
-          livereload: '<%= connect.options.livereload %>'
+          livereload: '8025'
         files: [
           'build/**/*.html'
           'build/**/*.css'
@@ -65,7 +65,7 @@ module.exports = (grunt) ->
           "build/app.css": "src/**/*.stylus"
     wiredep:
       options:
-        directory: 'client/bower_components'
+        directory: 'build/bower'
       target:
         src: 'build/index.html'
   grunt.registerTask 'default', [

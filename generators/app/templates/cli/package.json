@@ -1,0 +1,23 @@
+{
+  "name": "<%= appName %>",
+  "description": "",
+  "version": "0.0.1",
+  "homepage": "",
+  "author": {
+    "name": "",
+    "email": ""
+  },
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+  },
+  "peerDependencies": {
+  },
+  "keywords": [],
+  "dependencies": {
+  }
+}

@@ -1,14 +1,12 @@
 (function() {
   'use strict';
-  var fs, glob, path, spawn, spawnSync, write;
-
-  path = require('path');
-
-  fs = require('fs');
+  var fs, glob, launchGrunt, spawn, spawnSync, write;
 
   spawn = require('cross-spawn');
 
   glob = require('glob');
+
+  fs = require('fs');
 
   spawnSync = function(command, args, cb) {
     var poll, result;
@@ -29,25 +27,37 @@
 
   write = function(yeoman, options, cb) {
     var files;
-    if (!self.filters.jade) {
-      self.filters.jade = false;
-    }
     return files = glob('**', {
       dot: true,
-      cwd: self.sourceRoot()
+      cwd: yeoman.sourceRoot()
     }, function(err, files) {
       var f, i, len;
       for (i = 0, len = files.length; i < len; i++) {
         f = files[i];
-        yeoman.fs.copyTpl(self.templatePath(f), self.destinationPath(f), options);
+        if (fs.lstatSync(yeoman.templatePath(f)).isDirectory()) {
+          fs.mkdirSync(yeoman.destinationPath(f));
+        }
+        yeoman.fs.copyTpl(yeoman.templatePath(f), yeoman.destinationPath(f), options);
       }
       return typeof cb === "function" ? cb() : void 0;
     });
   };
 
+  launchGrunt = function(yeoman) {
+    yeoman.log('');
+    yeoman.log('Your app has been built');
+    yeoman.log('CD into ' + yeoman.filters.appName + '/');
+    yeoman.log('and type');
+    yeoman.log('    grunt');
+    yeoman.log('to run');
+    yeoman.log('');
+    return yeoman.spawnCommand('grunt', null, null);
+  };
+
   module.exports = {
     spawnSync: spawnSync,
-    write: write
+    write: write,
+    launchGrunt: launchGrunt
   };
 
 }).call(this);
