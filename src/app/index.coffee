@@ -8,7 +8,27 @@ module.exports = yeoman.generators.Base.extend
       type: String
       required: true
     return
-  firstThing: ->
+  prompts: ->
     cb = @async()
-    console.log 'I\'m doin it'
-    cb() 
+    @prompt [
+      {
+        type: 'list'
+        name: 'app_type'
+        message: 'What type of app would you like to create?'
+        choices: [
+          'Console'
+          'Web'
+        ]
+        default: 0
+        filter: (val) ->
+          filterMap =
+            'Console': 'cli'
+            'Web': 'web'
+          filterMap[val]
+      }
+    ], (answers) ->
+      @filters = {}
+      @filters.app_type = answers.app_type
+      console.log @filters
+      cb?()
+      
