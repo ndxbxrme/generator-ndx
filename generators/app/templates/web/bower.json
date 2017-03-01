@@ -1,15 +1,19 @@
 {
   "name": "<%= appName %>",
-  "version": "0.0.1",
+  "description": "",
+  "main": "server/app.js",
+  "authors": [
+    ""
+  ],
   "license": "MIT",
+  "homepage": "",
+  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
-    "build/bower",
+    "bower",
     "test",
     "tests"
-  ],
-  "dependencies": {
-  }
+  ]
 }

@@ -1,10 +1,14 @@
 module.exports = (grunt) ->
   require('load-grunt-tasks') grunt
   grunt.initConfig
+    express:
+      web:
+        options:
+          script: 'build/test.js'
     watch:
       coffee:
         files: ['src/**/*.coffee']
-        tasks: ['coffee']
+        tasks: ['build']
     coffee:
       options:
         sourceMap: true
@@ -16,7 +20,20 @@ module.exports = (grunt) ->
           dest: 'build'
           ext: '.js'
         }]
-  grunt.registerTask 'default', [
+    clean:
+      build: 'build'
+      html: 'build/client/*/**/*.html'
+    nodeunit:
+      tests: ['build/test/**/*.js']
+  grunt.registerTask 'build', [
+    'clean:build'
     'coffee'
+  ]
+  grunt.registerTask 'default', [
+    'build'
     'watch'
+  ]
+  grunt.registerTask 'test', [
+    'build'
+    'nodeunit'
   ]

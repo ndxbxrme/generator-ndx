@@ -37,7 +37,7 @@
         if (fs.lstatSync(yeoman.templatePath(f)).isDirectory()) {
           fs.mkdirSync(yeoman.destinationPath(f));
         }
-        yeoman.fs.copyTpl(yeoman.templatePath(f), yeoman.destinationPath(f), options);
+        yeoman.fs.copyTpl(yeoman.templatePath(f), yeoman.destinationPath(f.replace('compname', yeoman.compname)), options);
       }
       return typeof cb === "function" ? cb() : void 0;
     });

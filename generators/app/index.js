@@ -67,28 +67,37 @@
       fs.mkdirSync(this.filters.appName);
       process.chdir(process.cwd() + '/' + this.filters.appName);
       this.sourceRoot(this.templatePath('/' + this.filters.appType));
+      this.destinationRoot(process.cwd());
+      this.config.set('filters', this.filters);
+      this.config.set('appname', this.appname);
       utils.write(this, this.filters, cb);
     },
     installDeps: function() {
-      this.npmInstall(['grunt', 'grunt-cli', 'grunt-contrib-coffee', 'grunt-contrib-watch', 'load-grunt-tasks'], {
-        saveDev: true
-      }, (function(_this) {
-        return function() {
-          if (_this.filters.appType === 'web') {
-            return _this.npmInstall(['grunt-contrib-connect', 'grunt-contrib-jade', 'grunt-contrib-stylus', 'grunt-injector', 'grunt-wiredep', 'serve-static'], {
-              saveDev: true
+      if (this.filters.appType === 'web') {
+        this.npmInstall(['grunt', 'grunt-angular-templates', 'grunt-cli', 'grunt-contrib-clean', 'grunt-contrib-coffee', 'grunt-contrib-copy', 'grunt-contrib-jade', 'grunt-contrib-stylus', 'grunt-contrib-watch', 'grunt-express-server', 'grunt-file-append', 'grunt-filerev', 'grunt-injector', 'grunt-keepalive', 'grunt-ndxmin', 'grunt-ngmin', 'grunt-usemin', 'grunt-wiredep', 'load-grunt-tasks'], {
+          saveDev: true
+        }, (function(_this) {
+          return function() {
+            return _this.npmInstall(['ndx-server', 'ndx-static-routes'], {
+              save: true
             }, function() {
-              return _this.bowerInstall(['jquery'], {
+              return _this.bowerInstall(['jquery', 'angular', 'angular-touch', 'angular-ui-router'], {
                 save: true
               }, function() {
                 return utils.launchGrunt(_this);
               });
             });
-          } else {
+          };
+        })(this));
+      } else {
+        this.npmInstall(['grunt', 'grunt-cli', 'grunt-contrib-clean', 'grunt-contrib-coffee', 'grunt-contrib-nodeunit', 'grunt-contrib-watch', 'load-grunt-tasks'], {
+          saveDev: true
+        }, (function(_this) {
+          return function() {
             return utils.launchGrunt(_this);
-          }
-        };
-      })(this));
+          };
+        })(this));
+      }
     }
   });
 

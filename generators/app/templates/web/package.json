@@ -1,23 +1,16 @@
 {
   "name": "<%= appName %>",
-  "description": "",
   "version": "0.0.1",
-  "homepage": "",
-  "author": {
-    "name": "",
-    "email": ""
-  },
-  "engines": {
-    "node": ">= 0.8.0"
-  },
+  "description": "",
+  "main": "server/app.js",
   "scripts": {
     "test": "grunt test"
   },
-  "devDependencies": {
+  "repository": {
+    "type": "git",
+    "url": ""
   },
-  "peerDependencies": {
-  },
-  "keywords": [],
-  "dependencies": {
-  }
+  "author": "",
+  "license": "MIT",
+  "homepage": ""
 }

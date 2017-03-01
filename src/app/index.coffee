@@ -4,7 +4,6 @@ path = require 'path'
 _ = require 'underscore.string'
 utils = require '../util.js'
 
-
 module.exports = yeoman.generators.Base.extend
   init: ->
     @argument 'name',
@@ -50,17 +49,18 @@ module.exports = yeoman.generators.Base.extend
     fs.mkdirSync @filters.appName
     process.chdir process.cwd() + '/' + @filters.appName
     @sourceRoot @templatePath('/' + @filters.appType)
+    @destinationRoot process.cwd()
+    @config.set 'filters', @filters
+    @config.set 'appname', @appname
     utils.write this, @filters, cb
     return
   installDeps: ->
-    @npmInstall ['grunt', 'grunt-cli', 'grunt-contrib-coffee', 'grunt-contrib-watch', 'load-grunt-tasks'],
-      saveDev: true, =>
-        if @filters.appType is 'web'
-          @npmInstall ['grunt-contrib-connect', 'grunt-contrib-jade', 'grunt-contrib-stylus', 'grunt-injector', 'grunt-wiredep', 'serve-static'],
-            saveDev: true, =>
-              @bowerInstall ['jquery'],
-                save: true, =>
-                  utils.launchGrunt this
-        else
-          utils.launchGrunt this
+    if @filters.appType is 'web'
+      @npmInstall ['grunt', 'grunt-angular-templates', 'grunt-cli', 'grunt-contrib-clean', 'grunt-contrib-coffee', 'grunt-contrib-copy', 'grunt-contrib-jade', 'grunt-contrib-stylus', 'grunt-contrib-watch', 'grunt-express-server', 'grunt-file-append', 'grunt-filerev', 'grunt-injector', 'grunt-keepalive', 'grunt-ndxmin', 'grunt-ngmin', 'grunt-usemin', 'grunt-wiredep', 'load-grunt-tasks'], saveDev: true, =>
+        @npmInstall ['ndx-server', 'ndx-static-routes'], save: true, =>
+          @bowerInstall ['jquery', 'angular', 'angular-touch', 'angular-ui-router'], save: true, =>
+            utils.launchGrunt @
+    else
+      @npmInstall ['grunt', 'grunt-cli', 'grunt-contrib-clean', 'grunt-contrib-coffee', 'grunt-contrib-nodeunit', 'grunt-contrib-watch', 'load-grunt-tasks'], saveDev: true, =>
+        utils.launchGrunt @
     return
