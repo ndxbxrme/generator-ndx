@@ -31,8 +31,8 @@
           filter: function(val) {
             var filterMap;
             filterMap = {
-              'Console': 'cli',
-              'Web': 'web'
+              'Web': 'web',
+              'Module': 'cli'
             };
             return filterMap[val];
           }

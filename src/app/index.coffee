@@ -24,8 +24,8 @@ module.exports = yeoman.generators.Base.extend
         default: 0
         filter: (val) ->
           filterMap =
-            'Console': 'cli'
             'Web': 'web'
+            'Module': 'cli'
           filterMap[val]
       }
     ], (answers) =>
