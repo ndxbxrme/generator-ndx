@@ -3,7 +3,7 @@ fs = require 'fs'
 path = require 'path'
 _ = require 'underscore.string'
 utils = require '../util.js'
-
+ 
 module.exports = yeoman.generators.Base.extend
   init: ->
     @argument 'name',
@@ -18,8 +18,8 @@ module.exports = yeoman.generators.Base.extend
         name: 'appType'
         message: 'What type of app would you like to create?'
         choices: [
-          'Console'
           'Web'
+          'Module'
         ]
         default: 0
         filter: (val) ->

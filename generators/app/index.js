@@ -26,7 +26,7 @@
           type: 'list',
           name: 'appType',
           message: 'What type of app would you like to create?',
-          choices: ['Console', 'Web'],
+          choices: ['Web', 'Module'],
           "default": 0,
           filter: function(val) {
             var filterMap;

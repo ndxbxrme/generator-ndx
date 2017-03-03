@@ -17,4 +17,7 @@ angular.module '<%= appName %>', [
 .config ($locationProvider, $urlRouterProvider) ->
   $urlRouterProvider.otherwise '/'
   $locationProvider.html5Mode true
-angular.module 'ndx', [] #ndx module stub
+try
+  angular.module 'ndx'
+catch e
+  angular.module 'ndx', [] #ndx module stub
