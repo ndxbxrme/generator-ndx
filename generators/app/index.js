@@ -13,10 +13,12 @@
 
   module.exports = yeoman.generators.Base.extend({
     init: function() {
+      console.log('hey');
       this.argument('name', {
         type: String,
         required: true
       });
+      console.log(this.name);
     },
     prompts: function() {
       var cb;
@@ -74,15 +76,21 @@
     },
     installDeps: function() {
       if (this.filters.appType === 'web') {
+        console.log('installing dev modules');
         this.npmInstall(['grunt', 'grunt-angular-templates', 'grunt-cli', 'grunt-contrib-clean', 'grunt-contrib-coffee', 'grunt-contrib-copy', 'grunt-contrib-jade', 'grunt-contrib-stylus', 'grunt-contrib-watch', 'grunt-express-server', 'grunt-file-append', 'grunt-filerev', 'grunt-injector', 'grunt-keepalive', 'grunt-ndxmin', 'grunt-ngmin', 'grunt-usemin', 'grunt-wiredep', 'load-grunt-tasks'], {
-          saveDev: true
+          saveDev: true,
+          silent: true
         }, (function(_this) {
           return function() {
+            console.log('installing server modules');
             return _this.npmInstall(['ndx-server', 'ndx-static-routes'], {
-              save: true
+              save: true,
+              silent: true
             }, function() {
+              console.log('installing client modules');
               return _this.bowerInstall(['jquery', 'angular', 'angular-touch', 'angular-ui-router'], {
-                save: true
+                save: true,
+                silent: true
               }, function() {
                 return utils.launchGrunt(_this);
               });
@@ -90,8 +98,10 @@
           };
         })(this));
       } else {
+        console.log('installing dev modules');
         this.npmInstall(['grunt', 'grunt-cli', 'grunt-contrib-clean', 'grunt-contrib-coffee', 'grunt-contrib-nodeunit', 'grunt-contrib-watch', 'load-grunt-tasks'], {
-          saveDev: true
+          saveDev: true,
+          silent: true
         }, (function(_this) {
           return function() {
             return utils.launchGrunt(_this);

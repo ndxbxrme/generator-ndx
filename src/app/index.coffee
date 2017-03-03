@@ -6,9 +6,11 @@ utils = require '../util.js'
  
 module.exports = yeoman.generators.Base.extend
   init: ->
+    console.log 'hey'
     @argument 'name',
       type: String
       required: true
+    console.log @name
     return
   prompts: ->
     cb = @async()
@@ -56,11 +58,27 @@ module.exports = yeoman.generators.Base.extend
     return
   installDeps: ->
     if @filters.appType is 'web'
-      @npmInstall ['grunt', 'grunt-angular-templates', 'grunt-cli', 'grunt-contrib-clean', 'grunt-contrib-coffee', 'grunt-contrib-copy', 'grunt-contrib-jade', 'grunt-contrib-stylus', 'grunt-contrib-watch', 'grunt-express-server', 'grunt-file-append', 'grunt-filerev', 'grunt-injector', 'grunt-keepalive', 'grunt-ndxmin', 'grunt-ngmin', 'grunt-usemin', 'grunt-wiredep', 'load-grunt-tasks'], saveDev: true, =>
-        @npmInstall ['ndx-server', 'ndx-static-routes'], save: true, =>
-          @bowerInstall ['jquery', 'angular', 'angular-touch', 'angular-ui-router'], save: true, =>
+      console.log 'installing dev modules'
+      @npmInstall ['grunt', 'grunt-angular-templates', 'grunt-cli', 'grunt-contrib-clean', 'grunt-contrib-coffee', 'grunt-contrib-copy', 'grunt-contrib-jade', 'grunt-contrib-stylus', 'grunt-contrib-watch', 'grunt-express-server', 'grunt-file-append', 'grunt-filerev', 'grunt-injector', 'grunt-keepalive', 'grunt-ndxmin', 'grunt-ngmin', 'grunt-usemin', 'grunt-wiredep', 'load-grunt-tasks'], 
+        saveDev: true
+        silent: true
+      , =>
+        console.log 'installing server modules'
+        @npmInstall ['ndx-server', 'ndx-static-routes'], 
+          save: true
+          silent: true
+        , =>
+          console.log 'installing client modules'
+          @bowerInstall ['jquery', 'angular', 'angular-touch', 'angular-ui-router'], 
+            save: true
+            silent: true
+          , =>
             utils.launchGrunt @
     else
-      @npmInstall ['grunt', 'grunt-cli', 'grunt-contrib-clean', 'grunt-contrib-coffee', 'grunt-contrib-nodeunit', 'grunt-contrib-watch', 'load-grunt-tasks'], saveDev: true, =>
+      console.log 'installing dev modules'
+      @npmInstall ['grunt', 'grunt-cli', 'grunt-contrib-clean', 'grunt-contrib-coffee', 'grunt-contrib-nodeunit', 'grunt-contrib-watch', 'load-grunt-tasks'], 
+        saveDev: true
+        silent: true
+      , =>
         utils.launchGrunt @
     return
