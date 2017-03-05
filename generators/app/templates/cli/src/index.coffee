@@ -1,3 +1,3 @@
 'use strict'
 
-console.log 'hey'
+module.exports = (ndx) ->
