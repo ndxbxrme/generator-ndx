@@ -1,6 +1,6 @@
 'use strict'
 
-ndx = require 'ndx-server'
+require 'ndx-server'
 .config
   database: 'db'
   tables: ['users']
