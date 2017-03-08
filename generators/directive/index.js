@@ -39,7 +39,7 @@
         {
           name: 'dir',
           message: 'Where would you like to create this directive?',
-          "default": '/src/client/directives'
+          "default": "/src/client/directives/" + this.filters.compname
         }, {
           type: 'confirm',
           name: 'complex',
@@ -54,7 +54,6 @@
     },
     write: function() {
       this.sourceRoot(path.join(__dirname, './templates/') + (this.filters.complex ? 'complex' : 'simple'));
-      this.filters.dir = this.filters.dir + '/' + this.filters.compname;
       this.filters.templateDir = this.filters.dir.replace('src/client/', '');
       this.destinationRoot(path.join(process.cwd(), this.filters.dir));
       genUtils.write(this, this.filters);

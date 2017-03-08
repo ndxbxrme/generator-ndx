@@ -31,7 +31,7 @@
         {
           name: 'dir',
           message: 'Where would you like to create this directive?',
-          "default": '/src/client/directives'
+          "default": '/src/client/directives/login'
         }
       ], (function(answers) {
         this.filters.dir = answers.dir.replace(/\/$/, '').replace(/^\//, '');
@@ -40,7 +40,6 @@
     },
     write: function() {
       this.sourceRoot(path.join(__dirname, './templates/'));
-      this.filters.dir = this.filters.dir + '/login';
       this.filters.templateDir = this.filters.dir.replace('src/client/', '');
       this.destinationRoot(path.join(process.cwd(), this.filters.dir));
       genUtils.write(this, this.filters);

@@ -26,7 +26,7 @@ module.exports = yeoman.generators.Base.extend
       {
         name: 'dir'
         message: 'Where would you like to create this directive?'
-        default: '/src/client/directives'
+        default: "/src/client/directives/#{@filters.compname}"
       }
       {
         type: 'confirm'
@@ -43,7 +43,6 @@ module.exports = yeoman.generators.Base.extend
     return
   write: ->
     @sourceRoot path.join(__dirname, './templates/') + (if @filters.complex then 'complex' else 'simple')
-    @filters.dir = @filters.dir + '/' + @filters.compname
     @filters.templateDir = @filters.dir.replace('src/client/', '')
     @destinationRoot path.join(process.cwd(), @filters.dir)
     genUtils.write this, @filters

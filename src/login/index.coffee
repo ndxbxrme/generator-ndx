@@ -20,7 +20,7 @@ module.exports = yeoman.generators.Base.extend
       {
         name: 'dir'
         message: 'Where would you like to create this directive?'
-        default: '/src/client/directives'
+        default: '/src/client/directives/login'
       }
     ], ((answers) ->
       @filters.dir = answers.dir.replace(/\/$/, '').replace(/^\//, '')
@@ -30,7 +30,6 @@ module.exports = yeoman.generators.Base.extend
     return
   write: ->
     @sourceRoot path.join(__dirname, './templates/')
-    @filters.dir = @filters.dir + '/login'
     @filters.templateDir = @filters.dir.replace('src/client/', '')
     @destinationRoot path.join(process.cwd(), @filters.dir)
     genUtils.write this, @filters
