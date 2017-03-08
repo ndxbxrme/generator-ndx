@@ -64,7 +64,7 @@ module.exports = yeoman.generators.Base.extend
         silent: true
       , =>
         console.log 'installing server modules'
-        @npmInstall ['ndx-server', 'ndx-static-routes'], 
+        @npmInstall ['ndx-server', 'ndx-static-routes', 'ndx-passport'], 
           save: true
           silent: true
         , =>

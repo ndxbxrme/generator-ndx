@@ -83,7 +83,7 @@
         }, (function(_this) {
           return function() {
             console.log('installing server modules');
-            return _this.npmInstall(['ndx-server', 'ndx-static-routes'], {
+            return _this.npmInstall(['ndx-server', 'ndx-static-routes', 'ndx-passport'], {
               save: true,
               silent: true
             }, function() {
