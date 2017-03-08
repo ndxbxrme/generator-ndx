@@ -88,7 +88,7 @@
               silent: true
             }, function() {
               console.log('installing client modules');
-              return _this.bowerInstall(['jquery', 'angular', 'angular-touch', 'angular-ui-router'], {
+              return _this.bowerInstall(['jquery', 'angular', 'angular-touch', 'angular-ui-router', 'ndx-auth'], {
                 save: true,
                 silent: true
               }, function() {

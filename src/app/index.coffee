@@ -69,7 +69,7 @@ module.exports = yeoman.generators.Base.extend
           silent: true
         , =>
           console.log 'installing client modules'
-          @bowerInstall ['jquery', 'angular', 'angular-touch', 'angular-ui-router'], 
+          @bowerInstall ['jquery', 'angular', 'angular-touch', 'angular-ui-router', 'ndx-auth'], 
             save: true
             silent: true
           , =>

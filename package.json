@@ -1,6 +1,6 @@
 {
   "name": "generator-ndx",
-  "version": "0.0.10",
+  "version": "0.1.0",
   "description": "Yeoman generator for creating ndx-framework apps",
   "keywords": [
     "yeoman-generator",
