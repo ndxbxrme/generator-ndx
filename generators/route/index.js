@@ -49,7 +49,7 @@
           "default": ''
         }, {
           name: 'parameters',
-          message: 'Parameters, eg :id/something/:another',
+          message: 'Parameters (eg. :id/something/:another)',
           "default": ''
         }
       ], (function(answers) {

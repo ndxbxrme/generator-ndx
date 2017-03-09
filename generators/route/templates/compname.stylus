@@ -1,2 +1,2 @@
-
+@import '<%for(var f=-1; f<templateDir.match(/\//g).length;f++){%>../<%}%>variables'
   

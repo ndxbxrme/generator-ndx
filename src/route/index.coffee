@@ -38,7 +38,7 @@ module.exports = yeoman.generators.Base.extend
       }
       {
         name: 'parameters'
-        message: 'Parameters, eg :id/something/:another'
+        message: 'Parameters (eg. :id/something/:another)'
         default: ''
       }
     ], ((answers) ->
