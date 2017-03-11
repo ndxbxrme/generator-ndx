@@ -1,0 +1,17 @@
+{
+  "name": "<%= appName %>",
+  "description": "<%= description %>",
+  "main": "build/index.js",
+  "authors": [
+    "<%= gitname %>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/<%= gitname %>/<%=appName%>",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

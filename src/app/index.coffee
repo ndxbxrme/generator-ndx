@@ -6,7 +6,6 @@ utils = require '../util.js'
  
 module.exports = yeoman.generators.Base.extend
   init: ->
-    console.log 'hey'
     @argument 'name',
       type: String
       required: true
@@ -30,9 +29,33 @@ module.exports = yeoman.generators.Base.extend
             'Module': 'cli'
           filterMap[val]
       }
+      {
+        type: 'list'
+        name: 'clientServer'
+        message: 'Is this a server or clientside module?'
+        when: (answers) ->
+          answers.appType is 'cli'
+        choices: [
+          'Server'
+          'Client'
+        ]
+        default: 0
+        filter: (val) ->
+          filterMap =
+            'Server': 'server'
+            'Client': 'client'
+          filterMap[val]
+      }
+      {
+        type: 'input'
+        name: 'description'
+        message: 'Type a description for your module'
+      }
     ], (answers) =>
       @filters = {}
       @filters.appType = answers.appType
+      @filters[answers.clientServer] = true
+      @filters.description = answers.description
       cb?()
   setup: ->
     @filters.appName = _.slugify _.dasherize @name
@@ -48,6 +71,8 @@ module.exports = yeoman.generators.Base.extend
     return
   write: ->
     cb = @async()
+    @filters.gitname = @user.git.name()
+    @filters.gitemail = @user.git.email()
     fs.mkdirSync @filters.appName
     process.chdir process.cwd() + '/' + @filters.appName
     @sourceRoot @templatePath('/' + @filters.appType)

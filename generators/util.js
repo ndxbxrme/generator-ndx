@@ -31,13 +31,30 @@
       dot: true,
       cwd: yeoman.sourceRoot()
     }, function(err, files) {
-      var f, i, len;
+      var allGood, f, filter, foundFilter, i, len, name;
       for (i = 0, len = files.length; i < len; i++) {
         f = files[i];
-        if (fs.lstatSync(yeoman.templatePath(f)).isDirectory()) {
-          fs.mkdirSync(yeoman.destinationPath(f));
+        name = f;
+        allGood = true;
+        if (f.indexOf('(') !== -1) {
+          allGood = false;
+          foundFilter = false;
+          for (filter in yeoman.filters) {
+            if (f.indexOf("(" + filter + ")") !== -1) {
+              allGood = true;
+              foundFilter = true;
+              name = f.replace("(" + filter + ")", '');
+              break;
+            }
+          }
         }
-        yeoman.fs.copyTpl(yeoman.templatePath(f), yeoman.destinationPath(f.replace('compname', yeoman.compname)), options);
+        if (allGood) {
+          if (fs.lstatSync(yeoman.templatePath(f)).isDirectory()) {
+            fs.mkdirSync(yeoman.destinationPath(f));
+            continue;
+          }
+          yeoman.fs.copyTpl(yeoman.templatePath(f), yeoman.destinationPath(name.replace('compname', yeoman.compname)), options);
+        }
       }
       return typeof cb === "function" ? cb() : void 0;
     });

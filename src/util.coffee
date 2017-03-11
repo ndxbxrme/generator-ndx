@@ -22,9 +22,22 @@ write = (yeoman, options, cb) ->
     cwd: yeoman.sourceRoot()
   , (err, files) ->
     for f in files
-      if fs.lstatSync(yeoman.templatePath(f)).isDirectory()
-        fs.mkdirSync yeoman.destinationPath(f)
-      yeoman.fs.copyTpl yeoman.templatePath(f), yeoman.destinationPath(f.replace('compname', yeoman.compname)), options
+      name = f
+      allGood = true
+      if f.indexOf('(') isnt - 1
+        allGood = false
+        foundFilter = false
+        for filter of yeoman.filters
+          if f.indexOf("(#{filter})") isnt -1
+            allGood = true
+            foundFilter = true
+            name = f.replace "(#{filter})", ''
+            break
+      if allGood
+        if fs.lstatSync(yeoman.templatePath(f)).isDirectory()
+          fs.mkdirSync yeoman.destinationPath(f)
+          continue
+        yeoman.fs.copyTpl yeoman.templatePath(f), yeoman.destinationPath(name.replace('compname', yeoman.compname)), options
     cb?()
     
 launchGrunt = (yeoman) ->

@@ -1,16 +1,16 @@
 {
   "name": "<%= appName %>",
   "version": "0.0.1",
-  "description": "",
+  "description": "<%= description %>",
   "main": "build/index.js",
   "scripts": {
     "test": "node build/test.js"
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/<%=gitname%>/<%=appName%>"
   },
-  "author": "",
+  "author": "<%= gitname %>",
   "license": "MIT",
-  "homepage": ""
+  "homepage": "https://github.com/<%=gitname%>/<%=appName%>"
 }

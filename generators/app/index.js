@@ -13,7 +13,6 @@
 
   module.exports = yeoman.generators.Base.extend({
     init: function() {
-      console.log('hey');
       this.argument('name', {
         type: String,
         required: true
@@ -38,11 +37,34 @@
             };
             return filterMap[val];
           }
+        }, {
+          type: 'list',
+          name: 'clientServer',
+          message: 'Is this a server or clientside module?',
+          when: function(answers) {
+            return answers.appType === 'cli';
+          },
+          choices: ['Server', 'Client'],
+          "default": 0,
+          filter: function(val) {
+            var filterMap;
+            filterMap = {
+              'Server': 'server',
+              'Client': 'client'
+            };
+            return filterMap[val];
+          }
+        }, {
+          type: 'input',
+          name: 'description',
+          message: 'Type a description for your module'
         }
       ], (function(_this) {
         return function(answers) {
           _this.filters = {};
           _this.filters.appType = answers.appType;
+          _this.filters[answers.clientServer] = true;
+          _this.filters.description = answers.description;
           return typeof cb === "function" ? cb() : void 0;
         };
       })(this));
@@ -66,6 +88,8 @@
     write: function() {
       var cb;
       cb = this.async();
+      this.filters.gitname = this.user.git.name();
+      this.filters.gitemail = this.user.git.email();
       fs.mkdirSync(this.filters.appName);
       process.chdir(process.cwd() + '/' + this.filters.appName);
       this.sourceRoot(this.templatePath('/' + this.filters.appType));
