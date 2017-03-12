@@ -57,7 +57,10 @@
         }, {
           type: 'input',
           name: 'description',
-          message: 'Type a description for your module'
+          message: 'Type a description for your module',
+          when: function(answers) {
+            return answers.appType === 'cli';
+          }
         }
       ], (function(_this) {
         return function(answers) {

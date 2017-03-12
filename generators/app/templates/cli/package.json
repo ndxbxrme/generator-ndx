@@ -6,6 +6,8 @@
   "scripts": {
     "test": "node build/test.js"
   },
+  "ndx": true,
+  "loadOrder": 5,
   "repository": {
     "type": "git",
     "url": "https://github.com/<%=gitname%>/<%=appName%>"

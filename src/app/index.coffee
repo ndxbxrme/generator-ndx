@@ -50,6 +50,8 @@ module.exports = yeoman.generators.Base.extend
         type: 'input'
         name: 'description'
         message: 'Type a description for your module'
+        when: (answers) ->
+          answers.appType is 'cli'
       }
     ], (answers) =>
       @filters = {}
