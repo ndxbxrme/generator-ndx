@@ -2,7 +2,7 @@
   .login-holder
     .login-form
       h2 Log in or Sign up
-      form(name='loginForm', novalidate, ng-submit='login()')
+      form(name='loginForm', novalidate, ng-submit='login()', ignore='true')
         div
           input(type='email', name='email', required, ng-model='email', placeholder='Email address')
           span.error(ng-show='submitted && loginForm.email.$error.email') Please use a valid email address
