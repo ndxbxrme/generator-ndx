@@ -1,5 +1,5 @@
 @import '<%for(var f=-1; f<templateDir.match(/\//g).length;f++){%>../<%}%>variables'
-.invited
+.forgot
   form
     display flex
     flex-direction column

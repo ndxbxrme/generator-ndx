@@ -1,14 +1,12 @@
 'use strict'
 
 angular.module '<%= appName %>'
-.directive 'login', ($http, $location, $state) ->
+.directive 'login', ($http, $location) ->
   restrict: 'AE'
   templateUrl: '<%= templateDir %>/login.html'
   replace: true
   scope: {}
   link: (scope, elem) ->
-    scope.hideLogin = ->
-      $state.current.name is 'invited'
     scope.login = ->
       scope.submitted = true
       if scope.loginForm.$valid

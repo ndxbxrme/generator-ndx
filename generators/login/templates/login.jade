@@ -1,4 +1,4 @@
-.login(ng-hide='auth.getUser() || hideLogin()')
+.login(ng-hide='auth.loggedIn()')
   .login-holder
     .login-form
       h2 Log in or Sign up
@@ -14,6 +14,8 @@
           .error {{message}}
           input.button(type='submit', value='Login')
           input.button(type='button', ng-click='signup()', value='Sign Up')
+        .forgot-pass
+          a(ui-sref='forgot') Forgot your password?
         div
           p or use one of these...
         .social
