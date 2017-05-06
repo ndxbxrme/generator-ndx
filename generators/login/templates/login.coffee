@@ -16,7 +16,7 @@ angular.module '<%= appName %>'
         .then (response) ->
           scope.auth.getPromise()
           .then ->
-            $location.path '/loggedin'
+            scope.auth.goToNext()
         , (err) ->
           scope.message = err.data
           scope.submitted = false
@@ -29,7 +29,7 @@ angular.module '<%= appName %>'
         .then (response) ->
           scope.auth.getPromise()
           .then ->
-            $location.path '/loggedin'
+            scope.auth.goToNext()
         , (err) ->
           scope.message = err.data
           scope.submitted = false 

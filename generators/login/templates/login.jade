@@ -1,4 +1,4 @@
-.login(ng-hide='auth.loggedIn()')
+.login(ng-hide='auth.loggedIn() || auth.loading()')
   .login-holder
     .login-form
       h2 Log in or Sign up
