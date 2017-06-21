@@ -8,5 +8,5 @@ angular.module '<%= appName %>'
     templateUrl: 'routes/dashboard/dashboard.html'
     controller: 'DashboardCtrl'
     resolve:
-      user: (auth) ->
-        auth.getPromise()
+      user: (Auth) ->
+        Auth.getPromise()

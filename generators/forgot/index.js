@@ -30,7 +30,7 @@
       this.prompt([
         {
           name: 'dir',
-          message: 'Where would you like to create this directive?',
+          message: 'Where would you like to create this route?',
           "default": '/src/client/routes/forgot'
         }
       ], (function(answers) {

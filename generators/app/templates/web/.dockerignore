@@ -1,14 +1,11 @@
-node_modules/
 bower_components/
+node_modules/
 data/
-backup/
-uploads/
 logs/
+uploads/
+backup/
 .tmp/
-build/
 server/
-!src/server
-dist/
 env.bat
 env.sh
 key.pem

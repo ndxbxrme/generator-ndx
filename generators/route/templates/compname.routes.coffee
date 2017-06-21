@@ -7,5 +7,5 @@ angular.module '<%= appName %>'
     templateUrl: '<%= templateDir %>/<%=compnameSlugged%>.html'
     controller: '<%= compnameCapped %>Ctrl'
     resolve:
-      user: (auth) ->
-        auth.getPromise(<%= roles %>)
+      user: (Auth) ->
+        Auth.getPromise(<%= roles %>)

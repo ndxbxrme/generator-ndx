@@ -70,7 +70,7 @@ module.exports = (grunt) ->
           "build/client/app.css": "src/client/**/*.stylus"
     wiredep:
       options:
-        directory: 'bower'
+        directory: 'bower_components'
       target:
         src: 'build/client/index.html'
     clean:
