@@ -2,6 +2,7 @@ module.exports = (grunt) ->
   require('load-grunt-tasks') grunt
   require('grunt-ndxmin') grunt
   bower = require('./bower.json')
+  pkg = require('./package.json')
   grunt.initConfig
     express:
       options: {}
@@ -51,7 +52,7 @@ module.exports = (grunt) ->
       options:
         pretty: true
         data: ->
-          package: require('./package.json')
+          package: pkg
       default:
         files: [{
           expand: true
@@ -147,7 +148,8 @@ module.exports = (grunt) ->
         html: ['build/client/index.html']
     'ndx-script-inject':
       options:
-        sockets: bower.dependencies['ndx-socket']
+        bower: bower
+        pkg: pkg
       all:
         html: ['build/client/index.html']
   grunt.registerTask 'stuff', [
