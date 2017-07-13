@@ -6,6 +6,6 @@ angular.module '<%= appName %>'
     url: '/<%= compnameSlugged %><% if(parameters){ %>/<%=parameters%><% } %>'
     templateUrl: '<%= templateDir %>/<%=compnameSlugged%>.html'
     controller: '<%= compnameCapped %>Ctrl'
-    resolve:
-      user: (Auth) ->
-        Auth.getPromise(<%= roles %>)
+    data:
+      title: '<%= compname %>'
+      auth: <%= roles %>

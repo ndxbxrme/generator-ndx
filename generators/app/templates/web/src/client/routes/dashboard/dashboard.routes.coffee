@@ -7,6 +7,5 @@ angular.module '<%= appName %>'
     url: '/'
     templateUrl: 'routes/dashboard/dashboard.html'
     controller: 'DashboardCtrl'
-    resolve:
-      user: (Auth) ->
-        Auth.getPromise()
+    data:
+      title: 'Dashboard'

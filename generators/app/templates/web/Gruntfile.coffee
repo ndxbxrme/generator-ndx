@@ -20,7 +20,7 @@ module.exports = (grunt) ->
       frontend:
         options:
           spawn: true
-          livereload: true
+          livereload: +(process.env.LIVERELOAD_PORT or 35729)
         files: ['src/client/**/*.*']
         tasks: ['buildClient']
       web:
@@ -129,7 +129,7 @@ module.exports = (grunt) ->
     file_append:
       main:
         files: [{
-          append: '<script src="http://localhost:35729/livereload.js" type="text/javascript"></script>'
+          append: "<script src=\"http://localhost:#{process.env.LIVERELOAD_PORT or 35729}/livereload.js\" type=\"text/javascript\"></script>"
           input: 'build/client/index.html'
           output: 'build/client/index.html'
         }]
