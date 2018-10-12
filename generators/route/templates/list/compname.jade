@@ -1,0 +1,6 @@
+<% if(settings.FormExtras) { %>include ../../mixins/form.jade
+<% } %>.<%= compnameSlugged %>-route 
+  h1 {{ m('<%= endpointPlural %>-heading') }}
+  button(ui-sref='<%= endpointSingle %>({_id:""})') {{ m('<%= endpointPlural %>-button-new') }}
+  .<%= endpointSingle%>(ng-repeat='<%= endpointSingle %> in <%= endpointPlural %>.items', ui-sref='<%= endpointSingle %>({_id:<%= endpointSingle %>._id})') {{ <%= endpointSingle %>.name }}<% if(settings.Pagination) { %>
+  pagination(ng-model='<%= endpointPlural %>.args.page', total='<%= endpointPlural %>.total', page-size='<%= endpointPlural %>.args.pageSize')<% } %>

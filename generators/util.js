@@ -39,7 +39,7 @@
         if (f.indexOf('(') !== -1) {
           allGood = false;
           foundFilter = false;
-          for (filter in yeoman.filters) {
+          for (filter in yeoman.filters.settings) {
             if (f.indexOf("(" + filter + ")") !== -1) {
               allGood = true;
               foundFilter = true;
@@ -63,7 +63,7 @@
   launchGrunt = function(yeoman) {
     yeoman.log('');
     yeoman.log('Your app has been built');
-    yeoman.log('CD into ' + yeoman.filters.appName + '/');
+    yeoman.log('CD into ' + yeoman.filters.settings.appName + '/');
     yeoman.log('and type');
     yeoman.log('    grunt');
     yeoman.log('to run');

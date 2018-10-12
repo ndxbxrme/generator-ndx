@@ -1,0 +1,6 @@
+<% if(settings.FormExtras) { %>include ../../mixins/form.jade
+<% } %>.<%= compnameSlugged %>-route 
+  h1 {{ m('<%= endpointSingle %>-heading') }}
+  +form({data:'<%= endpointSingle %>'})
+    +input({name:'name'})
+    +controls()

@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module '<%= appName %>'
+angular.module '<%= settings.appName %>'
 .config ($stateProvider) ->
   $stateProvider.state '<%= compnameSlugged %>',
     url: '/<%= compnameSlugged %><% if(parameters){ %>/<%=parameters%><% } %>'

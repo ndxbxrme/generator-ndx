@@ -1,5 +1,5 @@
 'use strict'
 
-angular.module '<%= appName %>'
+angular.module '<%= settings.appName %>'
 .controller 'DashboardCtrl', ($scope) ->
   true

@@ -1,7 +1,7 @@
 .login-dir(ng-hide='auth.loggedIn() || auth.loading()')
   .login-holder
     .login-form
-      h2 Log in or Sign up
+      h2 Log in<% if(settings.userSignUp) { %> or Sign up<% } %>
       form(name='loginForm', novalidate, ng-submit='login()', ignore='true')
         div
           input(type='email', name='email', required, ng-model='email', placeholder='Email address')
@@ -12,21 +12,21 @@
           small.error(ng-show='submitted && loginForm.password.$error.required') A password is required
         div
           .error {{message}}
-          input.button(type='submit', value='Login')
-          input.button(type='button', ng-click='signup()', value='Sign Up')
+          input.button(type='submit', value='Login')<% if(settings.userSignUp) { %>
+          input.button(type='button', ng-click='signup()', value='Sign Up')<% } %><% if(settings.ForgotPassword) { %>
         .forgot-pass
-          a(ui-sref='forgot') Forgot your password?
+          a(ui-sref='forgot') Forgot your password?<% } %><% if(settings.hasSocial) { %>
         div
           p or use one of these...
-        .social
+        .social<% if(settings.Twitter) { %>
           a.button.twitter(href='/api/twitter', target='_self')
             i.fa.fa-twitter
             | &nbsp;Twitter
-          | &nbsp;
+          | &nbsp;<% } %><% if(settings.Facebook) { %>
           a.button.facebook(href='/api/facebook', target='_self')
             i.fa.fa-facebook
             | &nbsp;Facebook
-          | &nbsp;
+          | &nbsp;<% } %><% if(settings.Github) { %>
           a.button.github(href='/api/github', target='_self')
             i.fa.fa-github
-            | &nbsp;Github
+            | &nbsp;Github<% } %><% } %>

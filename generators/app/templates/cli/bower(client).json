@@ -1,12 +1,12 @@
 {
-  "name": "<%= appName %>",
-  "description": "<%= description %>",
+  "name": "<%= settings.appName %>",
+  "description": "<%= settings.description %>",
   "main": "build/index.js",
   "authors": [
-    "<%= gitname %>"
+    "<%= settings.gitname %>"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/<%= gitname %>/<%=appName%>",
+  "homepage": "https://github.com/<%= settings.gitname %>/<%=settings.appName%>",
   "ignore": [
     "**/.*",
     "node_modules",

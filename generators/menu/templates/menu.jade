@@ -1,0 +1,6 @@
+.menu-dir
+  ul
+    li(ng-show='auth.isAuthorized("dashboard")')
+      a(ui-sref='dashboard', ng-class='{selected:state("dashboard")}') {{ m('menu-dashboard') }}<% if(settings.makeRoutesForEndpoints) { for(var f=0; f<settings.myEndpoints.length; f++) { %>
+    li(ng-show='auth.isAuthorized("<%= settings.myEndpoints[f].plural %>")')
+      a(ui-sref='<%= settings.myEndpoints[f].plural %>', ng-class='{selected:state(["<%= settings.myEndpoints[f].plural %>", "<%= settings.myEndpoints[f].single %>"])}') {{ m('menu-<%= settings.myEndpoints[f].plural %>') }}<% } } %>

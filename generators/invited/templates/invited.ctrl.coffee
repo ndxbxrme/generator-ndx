@@ -1,8 +1,8 @@
 'use strict'
 
-angular.module '<%= appName %>'
-.controller 'InvitedCtrl', ($scope, $state, $http) ->
-  code = window.location.search.replace(/^\?/, '')
+angular.module '<%= settings.appName %>'
+.controller 'InvitedCtrl', ($scope, $state, $stateParams, $http) ->
+  code = $stateParams.code
   $scope.acceptInvite = ->
     if $scope.repeatPassword is $scope.newUser.local.password
       $http.post '/invite/accept', 
@@ -10,7 +10,11 @@ angular.module '<%= appName %>'
         user: $scope.newUser
       .then (response) ->
         if response.data is 'OK'
-          $state.go 'dashboard'
+          $scope.auth.logOut()
+          .then ->
+            $state.go 'dashboard'
+          , (err) ->
+            false
       , (err) ->
         false
     else

@@ -1,5 +1,5 @@
 {
-  "name": "<%= appName %>",
+  "name": "<%= settings.appName %>",
   "version": "0.0.1",
   "description": "",
   "main": "server/app.js",

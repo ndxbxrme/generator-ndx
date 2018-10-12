@@ -1,8 +1,8 @@
 'use strict'
 
-angular.module '<%= appName %>'
+angular.module '<%= settings.appName %>'
 .config ($stateProvider) ->
   $stateProvider.state 'invited',
-    url: '/invited'
-    templateUrl: '<%= templateDir %>/invited.html'
+    url: '/invite/:code'
+    templateUrl: 'routes/invited/invited.html'
     controller: 'InvitedCtrl'

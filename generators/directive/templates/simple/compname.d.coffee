@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module '<%= appName %>'
+angular.module '<%= settings.appName %>'
 .directive '<%= compname %>', ->
   restrict: 'EA'
   link: (scope, elem, attrs) ->

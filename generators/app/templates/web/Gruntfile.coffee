@@ -99,7 +99,7 @@ module.exports = (grunt) ->
           ]
     ngtemplates:
       options:
-        module: '<%= appName %>'
+        module: '<%= settings.appName %>'
       main:
         cwd: 'build/client'
         src: [

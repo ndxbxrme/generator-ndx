@@ -27,7 +27,7 @@ write = (yeoman, options, cb) ->
       if f.indexOf('(') isnt - 1
         allGood = false
         foundFilter = false
-        for filter of yeoman.filters
+        for filter of yeoman.filters.settings
           if f.indexOf("(#{filter})") isnt -1
             allGood = true
             foundFilter = true
@@ -43,7 +43,7 @@ write = (yeoman, options, cb) ->
 launchGrunt = (yeoman) ->
   yeoman.log ''
   yeoman.log 'Your app has been built'
-  yeoman.log 'CD into ' + yeoman.filters.appName + '/'
+  yeoman.log 'CD into ' + yeoman.filters.settings.appName + '/'
   yeoman.log 'and type'
   yeoman.log '    grunt'
   yeoman.log 'to run'

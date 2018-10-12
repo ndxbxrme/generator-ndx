@@ -12,6 +12,12 @@
   _ = require('underscore.string');
 
   module.exports = yeoman.generators.Base.extend({
+    init: function() {
+      return this.argument('dir', {
+        type: String,
+        required: false
+      });
+    },
     checkForConfig: function() {
       var cb;
       cb = this.async();
@@ -27,20 +33,26 @@
     askFor: function() {
       var cb;
       cb = this.async();
-      this.prompt([
-        {
-          name: 'dir',
-          message: 'Where would you like to create this directive?',
-          "default": '/src/client/directives/login'
-        }
-      ], (function(answers) {
-        this.filters.dir = answers.dir.replace(/\/$/, '').replace(/^\//, '');
+      if (!this.dir) {
+        this.prompt([
+          {
+            name: 'dir',
+            message: 'Where would you like to create this directive?',
+            "default": '/src/client/directives/login'
+          }
+        ], (function(answers) {
+          this.filters.dir = answers.dir.replace(/\/$/, '').replace(/^\//, '');
+          cb();
+        }).bind(this));
+      } else {
         cb();
-      }).bind(this));
+      }
     },
     write: function() {
+      this.filters.dir = this.filters.dir || this.dir;
       this.sourceRoot(path.join(__dirname, './templates/'));
       this.filters.templateDir = this.filters.dir.replace('src/client/', '');
+      this.filters.templateDir = this.filters.templateDir.replace(/^\//, '');
       this.destinationRoot(path.join(process.cwd(), this.filters.dir));
       genUtils.write(this, this.filters);
     }

@@ -1,1 +1,1 @@
-# <%= appName %>
+# <%= settings.appName %>

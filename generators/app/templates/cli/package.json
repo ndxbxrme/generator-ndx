@@ -1,7 +1,7 @@
 {
-  "name": "<%= appName %>",
+  "name": "<%= settings.appName %>",
   "version": "0.0.1",
-  "description": "<%= description %>",
+  "description": "<%= settings.description %>",
   "main": "build/index.js",
   "scripts": {
     "test": "node build/test.js"
@@ -10,9 +10,9 @@
   "loadOrder": 5,
   "repository": {
     "type": "git",
-    "url": "https://github.com/<%=gitname%>/<%=appName%>"
+    "url": "https://github.com/<%=settings.gitname%>/<%=settings.appName%>"
   },
-  "author": "<%= gitname %>",
+  "author": "<%= settings.gitname %>",
   "license": "MIT",
-  "homepage": "https://github.com/<%=gitname%>/<%=appName%>"
+  "homepage": "https://github.com/<%=settings.gitname%>/<%=settings.appName%>"
 }

@@ -5,6 +5,10 @@ genUtils = require '../util'
 _ = require 'underscore.string'
  
 module.exports = yeoman.generators.Base.extend
+  init: ->
+    @argument 'dir',
+      type: String
+      required: false
   checkForConfig: ->
     cb = @async()
     @projectDir = process.cwd()
@@ -16,21 +20,26 @@ module.exports = yeoman.generators.Base.extend
     cb()
   askFor: ->
     cb = @async()
-    @prompt [
-      {
-        name: 'dir'
-        message: 'Where would you like to create this directive?'
-        default: '/src/client/directives/login'
-      }
-    ], ((answers) ->
-      @filters.dir = answers.dir.replace(/\/$/, '').replace(/^\//, '')
+    if not @dir
+      @prompt [
+        {
+          name: 'dir'
+          message: 'Where would you like to create this directive?'
+          default: '/src/client/directives/login'
+        }
+      ], ((answers) ->
+        @filters.dir = answers.dir.replace(/\/$/, '').replace(/^\//, '')
+        cb()
+        return
+      ).bind(this)
+    else
       cb()
-      return
-    ).bind(this)
     return
   write: ->
+    @filters.dir = @filters.dir or @dir
     @sourceRoot path.join(__dirname, './templates/')
     @filters.templateDir = @filters.dir.replace('src/client/', '')
+    @filters.templateDir = @filters.templateDir.replace /^\//, ''
     @destinationRoot path.join(process.cwd(), @filters.dir)
     genUtils.write this, @filters
     return

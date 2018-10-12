@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module '<%= appName %>'
+angular.module '<%= settings.appName %>'
 .directive 'login', ($http, $location) ->
   restrict: 'AE'
   templateUrl: '<%= templateDir %>/login.html'
