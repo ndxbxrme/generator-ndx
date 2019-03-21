@@ -44,11 +44,6 @@ launchGrunt = (yeoman) ->
   yeoman.log ''
   yeoman.log 'Your app has been built'
   yeoman.log 'CD into ' + yeoman.filters.settings.appName + '/'
-  yeoman.log 'and type'
-  yeoman.log '    grunt'
-  yeoman.log 'to run'
-  yeoman.log ''
-  yeoman.spawnCommand 'grunt', null, null
 
 module.exports =
   spawnSync: spawnSync

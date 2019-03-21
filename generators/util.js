@@ -63,12 +63,7 @@
   launchGrunt = function(yeoman) {
     yeoman.log('');
     yeoman.log('Your app has been built');
-    yeoman.log('CD into ' + yeoman.filters.settings.appName + '/');
-    yeoman.log('and type');
-    yeoman.log('    grunt');
-    yeoman.log('to run');
-    yeoman.log('');
-    return yeoman.spawnCommand('grunt', null, null);
+    return yeoman.log('CD into ' + yeoman.filters.settings.appName + '/');
   };
 
   module.exports = {

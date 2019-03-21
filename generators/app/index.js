@@ -568,7 +568,7 @@
         })(this));
       } else {
         console.log('installing dev modules');
-        this.npmInstall(['electron', 'electron-builder', 'grunt', 'grunt-cli', 'grunt-contrib-clean', 'grunt-contrib-coffee', 'grunt-contrib-copy', 'grunt-contrib-pug', 'grunt-contrib-watch', 'load-grunt-tasks'], {
+        this.npmInstall(['electron', 'electron-builder', 'grunt', 'grunt-cli', 'grunt-contrib-clean', 'grunt-contrib-coffee', 'grunt-contrib-copy', 'grunt-contrib-pug', 'grunt-contrib-stylus', 'grunt-contrib-watch', 'load-grunt-tasks'], {
           saveDev: true,
           silent: true
         }, (function(_this) {

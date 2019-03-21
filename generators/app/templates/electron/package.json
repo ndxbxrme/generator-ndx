@@ -5,11 +5,12 @@
   "main": "app/main.js",
   "scripts": {
     "start": "electron .",
-    "pack": "build --win -p always"
+    "pack-win": "build --win -p always",
+    "pack-mac": "build --mac -p always"
   },
   "build": {
     "appId": "com.<%=settings.gitname%>.<%= settings.appName %>",
-    "productName": "Screenclipper"
+    "productName": "<%= settings.appName %>"
   },
   "repository": {
     "type": "git",

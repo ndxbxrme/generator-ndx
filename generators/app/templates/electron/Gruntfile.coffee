@@ -7,7 +7,7 @@ module.exports = (grunt) ->
           script: 'app/test.js'
     watch:
       coffee:
-        files: ['src/**/*.coffee']
+        files: ['src/**/*.*']
         tasks: ['build']
     coffee:
       options:
@@ -31,6 +31,10 @@ module.exports = (grunt) ->
           dest: 'app'
           ext: '.html'
         ]
+    stylus:
+      default:
+        files:
+          "app/app.css": "src\/**\/*.styl"
     copy:
       build:
         files: [
@@ -49,6 +53,7 @@ module.exports = (grunt) ->
     'clean:build'
     'copy:build'
     'coffee'
+    'stylus'
     'pug'
   ]
   grunt.registerTask 'default', [

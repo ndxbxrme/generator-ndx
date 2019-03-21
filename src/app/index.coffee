@@ -491,7 +491,7 @@ module.exports = yeoman.generators.Base.extend
         utils.launchGrunt @
     else
       console.log 'installing dev modules'
-      @npmInstall ['electron', 'electron-builder', 'grunt', 'grunt-cli', 'grunt-contrib-clean', 'grunt-contrib-coffee', 'grunt-contrib-copy', 'grunt-contrib-pug', 'grunt-contrib-watch', 'load-grunt-tasks'],
+      @npmInstall ['electron', 'electron-builder', 'grunt', 'grunt-cli', 'grunt-contrib-clean', 'grunt-contrib-coffee', 'grunt-contrib-copy', 'grunt-contrib-pug', 'grunt-contrib-stylus', 'grunt-contrib-watch', 'load-grunt-tasks'],
         saveDev: true
         silent: true
       , =>
